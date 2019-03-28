@@ -1,0 +1,7 @@
+- project:
+    name: zuul/project-config
+    check:
+      jobs:
+        - noop
+      gate:
+        - noop
