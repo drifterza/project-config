@@ -1,0 +1,14 @@
+- job:
+    name: zuul-tox-docs
+    parent: opendev-tox-docs
+
+- job:
+    name: zuul-promote-docs
+    description: |
+      Publish a previously built documentation tarball.
+    run: playbooks/docs/promote.yaml
+    nodeset:
+      nodes: []
+    secrets:
+      - secret: zuul-afs
+        name: afs
