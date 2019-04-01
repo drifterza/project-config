@@ -4,27 +4,16 @@
 
 - job:
     name: zuul-promote-docs
-    description: |
-      Publish a previously built branch-tip documentation tarball.
-
-      Use this in the promote pipeline to publish a branch tip tarball
-      built in the gate pipeline.
-    run: playbooks/docs/promote.yaml
-    nodeset:
-      nodes: []
+    parent: opendev-promote-docs-base
     secrets:
       - secret: zuul-afs
         name: afs
+        pass-to-parent: true
 
 - job:
     name: zuul-publish-tox-docs
-    parent: zuul-tox-docs
-    description: |
-      Publish a ref-based documentation build.
-
-      Use this in the tag or release pipelines to publish a build
-      based on a newly-created tag.
-    post-run: playbooks/docs/publish.yaml
+    parent: opendev-publish-tox-docs-base
     secrets:
       - secret: zuul-afs
         name: afs
+        pass-to-parent: true
