@@ -3,7 +3,7 @@
     - name: Write branch marker text
       copy:
         dest: "{{ zuul.executor.log_root }}/docs/.root-marker"
-        content: "Project: {{ zuul.project.name }} Branch: {{ zuul.branch }} Build: {{ zuul.build }} Revision: {{ zuul.ref }}"
+        content: "Project: {{ zuul.project.name }} Tag: {{ zuul.tag }} Build: {{ zuul.build }} Revision: {{ zuul.ref }}"
     - name: Set publication directory to tag
       when: "zuul.tag is defined"
       set_fact:
