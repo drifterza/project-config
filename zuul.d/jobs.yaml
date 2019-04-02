@@ -5,6 +5,8 @@
 - job:
     name: zuul-promote-docs
     parent: opendev-promote-docs-base
+    vars:
+      download_artifact_job: zuul-tox-docs
     secrets:
       - secret: zuul-afs
         name: afs
