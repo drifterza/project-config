@@ -86,7 +86,7 @@
       in order to promote artifacts generated in the gate
       pipeline.
     manager: supercedent
-    precedence: low
+    precedence: high
     post-review: True
     trigger:
       gerrit:
