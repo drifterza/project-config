@@ -48,7 +48,7 @@
           approval:
             - Workflow: 1
         - event: comment-added
-          comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*reverify
+          comment: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*re(check|verify)
     start:
       gerrit:
         Verified: 0
