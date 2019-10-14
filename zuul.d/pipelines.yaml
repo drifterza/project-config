@@ -165,3 +165,44 @@
     failure:
       gerrit: {}
       mysql:
+
+- pipeline:
+    name: third-party-check
+    description: |
+      Newly uploaded patchsets to external projects enter this
+      pipeline to receive an initial +/-1 Verified vote.
+    manager: independent
+    trigger:
+      googlesource:
+        - event: pending-check
+          scheme: 'opendev-zuul-third-party-check'
+    enqueue:
+      googlesource:
+        checks_api:
+          scheme: 'opendev-zuul-third-party-check'
+          state: SCHEDULED
+          message: 'Change has been enqueued in check'
+    start:
+      googlesource:
+        checks_api:
+          scheme: 'opendev-zuul-third-party-check'
+          state: RUNNING
+          message: 'Jobs have started running'
+    no-jobs:
+      googlesource:
+        checks_api:
+          scheme: 'opendev-zuul-third-party-check'
+          state: NOT_RELEVANT
+          message: 'Project has no jobs configured'
+    success:
+      googlesource:
+        checks_api:
+          scheme: 'opendev-zuul-third-party-check'
+          state: SUCCESSFUL
+          message: 'Change passed all voting jobs'
+    failure:
+      googlesource:
+        checks_api:
+          scheme: 'opendev-zuul-third-party-check'
+          state: FAILED
+          message: 'Change failed'
