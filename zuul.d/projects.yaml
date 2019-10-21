@@ -6,3 +6,9 @@
     gate:
       jobs:
         - noop
+
+- project:
+    name: plugins/checks
+    third-party-check:
+      jobs:
+        - system-config-build-image-gerrit-master
