@@ -6,3 +6,10 @@
     gate:
       jobs:
         - noop
+
+- project:
+    name: plugins/checks
+    third-party-check:
+      jobs:
+        - opendev-buildset-registry
+        - build-gerrit-image
