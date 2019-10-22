@@ -172,6 +172,11 @@
       Newly uploaded patchsets to external projects enter this
       pipeline to receive an initial +/-1 Verified vote.
     manager: independent
+    # We should not leave any messages as a third-party.
+    start-message: ""
+    success-message: ""
+    failure-message: ""
+    merge-failure-message: ""
     trigger:
       googlesource:
         - event: pending-check
@@ -200,9 +205,11 @@
           scheme: 'opendev-zuul-third-party-check'
           state: SUCCESSFUL
           message: 'Change passed all voting jobs'
+      mysql:
     failure:
       googlesource:
         checks_api:
           scheme: 'opendev-zuul-third-party-check'
           state: FAILED
           message: 'Change failed'
+      mysql:
