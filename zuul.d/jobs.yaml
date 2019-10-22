@@ -32,3 +32,7 @@
     secrets:
       - secret: zuul-afs
         name: afs
+
+- job:
+    name: build-gerrit-image
+    parent: system-config-build-image-gerrit-master-base
