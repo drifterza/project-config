@@ -172,43 +172,43 @@
       Newly uploaded patchsets to external projects enter this
       pipeline to receive an initial +/-1 Verified vote.
     manager: independent
-    # We should not leave any messages as a third-party.
-    start-message: ""
-    success-message: ""
-    failure-message: ""
-    merge-failure-message: ""
     trigger:
       googlesource:
         - event: pending-check
           scheme: 'opendev-zuul-third-party-check'
     enqueue:
       googlesource:
-        checks_api:
+        comment: False
+        checks-api:
           scheme: 'opendev-zuul-third-party-check'
           state: SCHEDULED
           message: 'Change has been enqueued in check'
     start:
       googlesource:
-        checks_api:
+        comment: False
+        checks-api:
           scheme: 'opendev-zuul-third-party-check'
           state: RUNNING
           message: 'Jobs have started running'
     no-jobs:
       googlesource:
-        checks_api:
+        comment: False
+        checks-api:
           scheme: 'opendev-zuul-third-party-check'
           state: NOT_RELEVANT
           message: 'Project has no jobs configured'
     success:
       googlesource:
-        checks_api:
+        comment: False
+        checks-api:
           scheme: 'opendev-zuul-third-party-check'
           state: SUCCESSFUL
           message: 'Change passed all voting jobs'
       mysql:
     failure:
       googlesource:
-        checks_api:
+        comment: False
+        checks-api:
           scheme: 'opendev-zuul-third-party-check'
           state: FAILED
           message: 'Change failed'
