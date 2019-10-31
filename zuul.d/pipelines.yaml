@@ -3,6 +3,10 @@
     description: |
       Newly uploaded patchsets enter this pipeline to receive an
       initial +/-1 Verified vote.
+    success-message: Build succeeded (check pipeline).
+    failure-message: |
+      Build failed (check pipeline).  For information on how to proceed, see
+      http://docs.openstack.org/infra/manual/developers.html#automated-testing
     manager: independent
     precedence: low
     require:
@@ -32,6 +36,10 @@
       in order in this pipeline, and if they pass tests, will be
       merged. For documentation on how gating with Zuul works, please see
       https://zuul-ci.org/docs/zuul/user/gating.html
+    success-message: Build succeeded (gate pipeline).
+    failure-message: |
+      Build failed (gate pipeline).  For information on how to proceed, see
+      http://docs.openstack.org/infra/manual/developers.html#automated-testing
     manager: dependent
     precedence: normal
     supercedes: check
@@ -88,6 +96,10 @@
       This pipeline runs jobs that operate after each change is merged
       in order to promote artifacts generated in the gate
       pipeline.
+    success-message: Build succeeded (promote pipeline).
+    failure-message: |
+      Build failed (promote pipeline).  For information on how to proceed, see
+      http://docs.openstack.org/infra/manual/developers.html#automated-testing
     manager: supercedent
     precedence: high
     post-review: True
@@ -153,6 +165,8 @@
       On-demand pipeline for requesting a run against a set of jobs
       that are not yet gating. Leave review comment of "check
       experimental" to run jobs in this pipeline.
+    success-message: Build succeeded (experimental pipeline).
+    failure-message: Build failed (experimental pipeline).
     manager: independent
     precedence: low
     trigger:
@@ -171,6 +185,12 @@
     description: |
       Newly uploaded patchsets to external projects enter this
       pipeline to receive an initial +/-1 Verified vote.
+    success-message: Build succeeded (third-party-check pipeline).
+    # TODO(mordred) We should write a document for non-OpenStack developers
+    failure-message: |
+      Build failed (third-party-check pipeline) integration testing with
+      Zuul. For information on how to proceed, see
+      http://docs.openstack.org/infra/manual/developers.html#automated-testing
     manager: independent
     trigger:
       googlesource:
