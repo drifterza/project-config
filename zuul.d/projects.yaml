@@ -1,4 +1,11 @@
 - project:
+    name: ^zuul/.*
+    # Include a check queue so that initially every repo has a check queue
+    # and we can report invalid zuul.yaml files.
+    check:
+      jobs: []
+
+- project:
     name: zuul/project-config
     check:
       jobs:
